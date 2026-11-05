@@ -1,0 +1,4 @@
+const K="isai_firstweek";let s=[];try{s=JSON.parse(localStorage.getItem(K))||[]}catch(e){}
+const cards=[...document.querySelectorAll("#first .card")],w=document.createElement("div");w.innerHTML='<div class="pb"><i></i></div><p class="mut" id="pt"></p>';document.querySelector("#first > .mut").after(w);
+const upd=()=>{const n=cards.filter((c,i)=>c.querySelector("input").checked).length;w.querySelector("i").style.width=(n/cards.length*100)+"%";$("#pt").textContent=n+" of "+cards.length+" steps done"+(n===cards.length?" 🎉 Well done!":"");try{localStorage.setItem(K,JSON.stringify(cards.map((c,i)=>c.querySelector("input").checked?i:-1).filter(i=>i>=0)))}catch(e){}};
+cards.forEach((c,i)=>{const l=document.createElement("label");l.className="dn";l.innerHTML='<input type="checkbox"> Mark as done';l.firstChild.checked=s.includes(i);l.firstChild.onchange=upd;c.appendChild(l)});upd();

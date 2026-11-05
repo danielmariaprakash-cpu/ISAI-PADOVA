@@ -1,0 +1,7 @@
+const $=s=>document.querySelector(s),esc=t=>String(t??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const FULL="INDIAN STUDENT ASSOCIATION ITALY – PADOVA";
+const NAV=[["home","Home"],["events","Events"],["first-week","First Week"],["places","Places in Padua"],["missions","Indian Missions"],["enroll","Enrol / Contact"],["admin","Admin"]];
+const API=(a,d,t)=>fetch("/api/"+a,{method:"POST",headers:Object.assign({"Content-Type":"application/json"},t?{Authorization:"Bearer "+t}:{}),body:JSON.stringify(d||{})}).then(async r=>{let j={};try{j=await r.json()}catch(e){}if(!r.ok||j.error)throw new Error(j.error||"Request failed");return j});
+(()=>{const p=location.pathname.replace(/\/$/,"").replace(/\.html$/,"").slice(1)||"home";
+$("#hdr").outerHTML='<header><nav><a class="brand" href="/home"><img src="/logo.jpg" alt="'+FULL+' logo"><b>'+FULL+'</b></a>'+NAV.map(n=>'<a href="/'+n[0]+'"'+(n[0]===p?' class="on"':'')+'>'+n[1]+'</a>').join("")+'</nav></header>';
+$("#ftr").outerHTML='<footer>© '+"Indian Student Association Italy – Padova"+'<br>☎ <a href="tel:+393508859406">+39 3508859406</a> · ✉ <a href="mailto:isai.padova@gmail.com">isai.padova@gmail.com</a> · <a href="https://wa.me/393508859406" target="_blank" rel="noopener">WhatsApp us</a> · <a href="https://chat.whatsapp.com/D9YSeBQkOYuIpvO3pCCH3u?mode=gi" target="_blank" rel="noopener">Student group</a></footer>'})();

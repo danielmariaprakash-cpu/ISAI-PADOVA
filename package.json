@@ -1,0 +1,1 @@
+{"name":"indian-student-association-padova","version":"2.0.0","description":"Indian Student Association Italy – Padova: complete web application (zero dependencies)","private":true,"main":"server.js","scripts":{"start":"node server.js","newcode":"node server.js --new-code","test":"node test/api.test.js"},"engines":{"node":">=18"}}
